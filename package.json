@@ -1,0 +1,20 @@
+{
+  "name": "pololu-rest-api",
+  "version": "0.0.1",
+  "description": "Rest API for pololu robots ",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "pololu",
+    "robot"
+  ],
+  "author": "Sille Van Landschoot <info@sillevl.be>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
