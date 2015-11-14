@@ -18,27 +18,39 @@ app.get('/', function (req, res) {
 });
 
 app.post('/api/drive', function (req, res) {
-  if(req.body.speed != undefined){
-    var speed = req.body.speed;
-    pololu.drive(speed);
-    console.log("speed " + speed);
-    res.send('{"status": "ok"}');
+  if(req.body.speed != undefined && req.body.id != undefined){
+    pololu.drive(req.body.speed);
+    res.sendStatus(202);
   } else {
     res.sendStatus(400);
   }
-
 });
 
 app.post('/api/turn', function (req, res) {
-  res.send('Hello World!');
+  if(req.body.turnspeed != undefined && req.body.id != undefined){
+    pololu.turn(req.body.turnspeed);
+    res.sendStatus(202);
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.post('/api/stop', function (req, res) {
-  res.send('Hello World!');
+  if(req.body.stop === true && req.body.id != undefined){
+    pololu.stop()
+    res.sendStatus(202);
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.post('/api/calibrate', function (req, res) {
-  res.send('Hello World!');
+  if(req.body.calibrate === true && req.body.id != undefined){
+    pololu.calibrate()
+    res.sendStatus(202);
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.post('/api/leds/*', function (req, res) {
@@ -56,3 +68,5 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
+
+module.exports = server;
