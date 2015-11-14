@@ -2,6 +2,10 @@
   "name": "pololu-rest-api",
   "version": "0.0.1",
   "description": "Rest API for pololu robots ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sillevl/pololu-rest-api.git"
+  },
   "main": "server.js",
   "scripts": {
     "test": "mocha"
