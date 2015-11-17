@@ -11,11 +11,22 @@ var pololu = require('node-pololu').create("fixed-id", 22446, '127.0.0.1');
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
 
 app.use(bodyParser.json())
 app.use(allowCrossDomain);
+
+// Log all requests
+app.use(function(req, res, next){
+  console.log('[' + Date.now() + '] Request received');
+  console.log('    url: ' + req.originalUrl);
+  console.log('    params: ' + JSON.stringify(req.params));
+  console.log('    body: ' + JSON.stringify(req.body));
+  next();
+});
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
