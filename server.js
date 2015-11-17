@@ -8,10 +8,14 @@ var server = require('net').createServer().listen(22446);
 
 var pololu = require('node-pololu').create("fixed-id", 22446, '127.0.0.1');
 
-
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+}
 
 app.use(bodyParser.json())
-
+app.use(allowCrossDomain);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
